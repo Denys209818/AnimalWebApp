@@ -1,0 +1,15 @@
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\bin\Release\net5.0\AnimalWebApp.Domain.deps.json
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\bin\Release\net5.0\AnimalWebApp.Domain.runtimeconfig.json
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\bin\Release\net5.0\AnimalWebApp.Domain.runtimeconfig.dev.json
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\bin\Release\net5.0\AnimalWebApp.Domain.dll
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\bin\Release\net5.0\ref\AnimalWebApp.Domain.dll
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\bin\Release\net5.0\AnimalWebApp.Domain.pdb
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.csprojAssemblyReference.cache
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.AssemblyInfoInputs.cache
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.AssemblyInfo.cs
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.dll
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\ref\AnimalWebApp.Domain.dll
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.pdb
+C:\Users\Denis\Desktop\ASP.NET Core MVC\HomeWorks\AnimalWebApp\AnimalWebApp.Domain\obj\Release\net5.0\AnimalWebApp.Domain.genruntimeconfig.cache

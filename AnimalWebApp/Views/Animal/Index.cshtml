@@ -1,0 +1,183 @@
+﻿@model AnimalPageData
+
+@await Html.PartialAsync("_Search", Model.search)
+<br />
+<br />
+@await Html.PartialAsync("_Table", Model.animals)
+<br />
+<br />
+
+@await Html.PartialAsync("_Pagination", Model)
+
+@await Html.PartialAsync("_ModalDialogs")
+
+
+@section Scripts {
+    <script src="~/lib/axios/axios.js"></script>
+    <script src="https://use.fontawesome.com/7e741d0dc3.js"></script>
+    <script>
+        $(function () {
+            $(".cursor-pointer").attr("style", "cursor:pointer;");
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var index = 2 * @Model.Page;
+            $(".animalShow").on("click", function () {
+
+            var response = axios.get(`/animal/get/?id=${index}&name=@Model.search.Name`)
+                .then(result => {
+                    var data = JSON.parse(JSON.stringify(result))["data"];
+                    console.log
+                    if (data != null)
+                    {
+                        var count = JSON.parse(JSON.stringify(result))["data"].length;
+                        index += 2;
+                        for (var i = 0; i < count; i++)
+                    {
+                            var element = data[i];
+                            if (element != null) {
+                        $newItem = $(`
+                           <tr>
+                                <td scope="row">${element["Id"]}</td>
+                                <td>${element["Name"]}</td>
+                                <td>${element["Birthday"]}</td>
+                                <td>${element["Price"]}</td>
+                                <td><img src="${element["Image"]}" alt="img" width="100" /></td>
+                                <td>
+                                    <div class="container my-auto">
+                                        <p class="text-center my-auto">
+                                               <a href="/Animal/Edit/?id=${element["Id"]}" class="text-decoration-none">
+                                <i class="fa fa-pencil-square-o fa-2x text-primary"
+                               data-id="${element["Id"]}" aria-hidden="true"></i>
+                            </a>
+                                            <i class="fa fa-trash-o fa-2x text-danger"
+                                            data-id="${element["Id"]}" data-delete aria-hidden="true"></i>
+                                        </p>
+                                    </div>
+                                </td>
+                           </tr>
+                        `);
+                                $iconDelete = $newItem.find("[data-delete]");
+                                
+                        $("#tbody").append($newItem);
+                            $iconDelete.on("click", function (e) {
+                            $icon = $(e.target);
+
+                            $("#delItemModal").attr("data-id", $icon.attr("data-id"));
+                            $("#delItemModal").modal("show");
+                        });
+                        }
+                    }
+                    }
+                });
+
+        });
+        });
+    </script>
+
+    @*Delete*@
+    
+<script>
+        $(function () {
+            $btnDelete = $("#btnDelete");
+
+
+            $btnDelete.on("click", function () {
+                var promise = new Promise((resolve, reject) => {
+                    $("#delItemModal").modal("hide");
+
+                    resolve();
+                })
+                    .then(result => {
+                        return new Promise((resolve, reject) => {
+                            $(".ownmodal").addClass("d-block");
+                            $(".ownmodal").removeClass("d-none");
+                            resolve();
+                        });
+                    }).catch(reject => {
+                        throw new Error("Помилка мережі!");
+                    })
+                    .then(result =>
+                    {
+                        return new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                axios.post(`/Animal/Delete/${$("#delItemModal").attr("data-id")}`)
+                                    .then(result => {
+                                        resolve();
+                                    });
+                            }, 2000);
+                        });
+                    })
+                    .catch(reject => {
+                        throw new Error("Помилка мережі!");
+                    })
+                    .then(result => {
+                        return new Promise((resolve, reject) => {
+                            $(".ownmodal").removeClass("d-block");
+                            $(".ownmodal").addClass("d-none");
+
+                            $(`i[data-id="${$("#delItemModal").attr("data-id")}"]`).parent()
+                                .parent().parent().parent().remove();
+                            resolve();
+                        });
+                    })
+                    .catch(reject => {
+                        throw new Error("Помилка мережі!");
+                    })
+                    .then(resolve => {
+                        return new Promise((resolve, reject) => {
+                            axios.get(`/Animal/GetElement/?count=
+                                ${$("#tbody tr").length}&name=@Model.search.Name&page=${@Model.Page}`)
+                                .then(result => {
+                                    var data = result["data"];
+                                    if (data != null)
+                                    {
+                                        $newItem = $(`
+                           <tr>
+                                <td scope="row">${data["Id"]}</td>
+                                <td>${data["Name"]}</td>
+                                <td>${data["Birthday"]}</td>
+                                <td>${data["Price"]}</td>
+                                <td><img src="${data["Image"]}" alt="img" width="100" /></td>
+                                <td>
+                                    <div class="container my-auto">
+                                        <p class="text-center my-auto">
+                                             <a href="/Animal/Edit/?id=${data["Id"]}" class="text-decoration-none">
+                                                    <i class="fa fa-pencil-square-o fa-2x text-primary"
+                               data-id="${data["Id"]}" aria-hidden="true"></i>
+                            </a>
+                                            <i class="fa fa-trash-o fa-2x text-danger"
+                                            data-id="${data["Id"]}" data-delete aria-hidden="true"></i>
+                                        </p>
+                                    </div>
+                                </td>
+                           </tr>
+                        `);
+                                        $iconDelete = $newItem.find("[data-delete]");
+
+                                        $("#tbody").append($newItem);
+                                        $iconDelete.on("click", function (e) {
+                                            $icon = $(e.target);
+
+                                            $("#delItemModal").attr("data-id", $icon.attr("data-id"));
+                                            $("#delItemModal").modal("show");
+                                        });
+                                    }
+                                });
+                            resolve();
+                        });
+                    });
+
+            });
+
+            $("[data-delete]").on("click", function (e) {
+                $icon = $(e.target);
+
+                $("#delItemModal").attr("data-id", $icon.attr("data-id"));
+                $("#delItemModal").modal("show");
+            });
+        });
+</script>
+}
+

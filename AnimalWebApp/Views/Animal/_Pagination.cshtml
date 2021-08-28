@@ -1,0 +1,84 @@
+﻿@model AnimalPageData
+
+@{
+
+    int startCount = Model.Page - 5 > 1 ? Model.Page - 5 : 1;
+    int endCount = Model.Page + 5 <= Model.PageCount ? Model.Page + 5 : Model.PageCount;
+
+
+    if (startCount == 1)
+    {
+        endCount += -(Model.Page - 6);
+    }
+
+    if (Model.Page + 5 >= Model.PageCount)
+    {
+        startCount -= (Model.Page + 5 - Model.PageCount);
+    }
+
+    startCount = startCount < 1 ? 1 : startCount;
+    endCount = endCount >= Model.PageCount ? Model.PageCount : endCount;
+    int counter = startCount;
+
+}
+<div class="container">
+    <ul class="mx-auto pagination justify-content-center">
+        <li class="page-item">
+            <a asp-controller="Animal"
+               asp-action="Index" asp-route-name="@Model.search.Name"
+               asp-route-page="@(Model.Page - 1 > 1 ? Model.Page - 1 : 1)" class="page-link">&laquo;</a>
+        </li>
+
+        @for (int i = startCount; i <= Model.Page; i++)
+        {
+            string active = "";
+            int num = i;
+            if (i == Model.Page)
+                active = "active";
+
+            string content = "";
+
+            if (startCount > 1 && counter == startCount)
+            {
+                content = 1.ToString();
+                num = 1;
+            }
+
+            if (startCount > 1 && counter == startCount + 1)
+                content = "...";
+            else content = num.ToString();
+
+
+            counter++;
+            <li class="page-item @active">
+                <a class="page-link" asp-controller="Animal" asp-action="Index"
+                   asp-route-name="@Model.search.Name" asp-route-page="@num">@content</a>
+            </li>
+        }
+
+        @for (int i = Model.Page + 1; i <= endCount; i++)
+        {
+            string content = "";
+            int num = i;
+            if (endCount < Model.PageCount && counter == endCount)
+                num = Model.PageCount;
+
+            if (endCount < Model.PageCount && counter == endCount - 1)
+                content = "...";
+            else content = num.ToString();
+
+
+            counter++;
+            <li class="page-item">
+                <a class="page-link" asp-controller="Animal" asp-action="Index"
+                   asp-route-name="@Model.search.Name" asp-route-page="@num">@content</a>
+            </li>
+        }
+
+        <li class="page-item">
+            <a asp-controller="Animal"
+               asp-action="Index" asp-route-name="@Model.search.Name"
+               asp-route-page="@(Model.Page+1 < Model.PageCount ? Model.Page+1 : Model.PageCount)" class="page-link">&raquo;</a>
+        </li>
+    </ul>
+</div>

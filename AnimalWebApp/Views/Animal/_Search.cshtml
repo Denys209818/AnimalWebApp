@@ -1,0 +1,7 @@
+﻿@model AnimalSearchViewModel
+
+    <form class="d-flex col-3" method="get" asp-controller="Animal" asp-action="Index">
+        <input class="form-control me-2" asp-for="Name" type="search" placeholder="Пошук">
+        <button class="btn btn-outline-success" type="submit">Шукати</button>
+    </form>
+    <hr />
