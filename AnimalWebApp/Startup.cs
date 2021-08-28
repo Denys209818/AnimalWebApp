@@ -70,6 +70,9 @@ namespace AnimalWebApp
 
             string dirPath = Path.Combine(Directory.GetCurrentDirectory(), "Images");
 
+            if (!Directory.Exists(dirPath))
+                Directory.CreateDirectory(dirPath);
+
             app.UseStaticFiles(new StaticFileOptions { 
                 RequestPath = "/Images",
                 FileProvider = new PhysicalFileProvider(dirPath)
